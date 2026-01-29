@@ -2,7 +2,9 @@ package com.kovanlabs.intern.arrays;
 
 public class VarArgs {
 
-    static void change(int... num){
+    static void change(String name,int... num){
+
+        System.out.println(name);
         for (int x : num) {
             System.out.print(x+" ");
         }
@@ -11,10 +13,10 @@ public class VarArgs {
 
     public static void main(String[] args) {
 
-        change(2,3,1,30);
-        change(3,5,2,6);
-        change(5,2);
-        change(1);
+        change("vrvrvr",3,1,30);
+        change("evv",5,2,6);
+        change("gbtbt",2);
+        change("rvrv");
 
     }
 }
