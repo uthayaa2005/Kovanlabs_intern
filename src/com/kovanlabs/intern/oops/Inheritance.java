@@ -9,6 +9,7 @@ class Vehicle{
 class Car extends Vehicle{
     @Override
     void move(){
+
         System.out.println("Cars moving");
     }
 }
@@ -16,6 +17,7 @@ class Car extends Vehicle{
 class Bike extends Vehicle{
     @Override
     void move(){
+        super.move();
         System.out.println("Bikes moving");
     }
     void race(){
@@ -30,5 +32,7 @@ public class Inheritance {
         car1.move();
         bike1.race();
         bike1.move();
+
+
     }
 }

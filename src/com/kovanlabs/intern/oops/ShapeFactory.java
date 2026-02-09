@@ -6,6 +6,7 @@ abstract class Shape {
 class Circle extends Shape {
     private double radius;
     public Circle(double radius){
+
         this.radius = radius;
     }
     @Override
@@ -17,10 +18,12 @@ class Circle extends Shape {
 class Square extends Shape {
     private double side;
     public Square(double side){
+
         this.side = side;
     }
     @Override
     double getArea(){
+
         return side * side;
     }
 }
