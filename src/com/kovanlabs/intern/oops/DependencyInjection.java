@@ -1,41 +1,32 @@
 package com.kovanlabs.intern.oops;
 
-interface Engine{
-    void start();
-}
-
-class PetrolEngine implements Engine{
-    @Override
-    public void start() {
-        System.out.println("Petrol Engine started");
+class  CoffeeMachine{
+    void prepareCoffee(){
+        System.out.println("CoffeeMachine on");
     }
 }
 
-class DeveloperEngine implements Engine{
-    @Override
-    public void start() {
-        System.out.println("Developer Engine started");
-    }
-}
+class Coffee extends CoffeeMachine{
+    private CoffeeMachine coffeeMachine;
 
-class Boat{
-    public Engine engine;
+    Coffee(CoffeeMachine coffeeMachine){
 
-    public Boat(Engine engine){
-        this.engine = engine;
+        this.coffeeMachine = coffeeMachine;
     }
 
-    void drive(){
-        engine.start();
-        System.out.println("Boat moves");
+    void CoffeeReady(){
+        coffeeMachine.prepareCoffee();
+        System.out.println("Coffee ready");
     }
 }
 
 public class DependencyInjection {
     public static void main(String[] args) {
-        Engine engine = new PetrolEngine();
-        Boat boat = new Boat(engine);
+     CoffeeMachine coffeeMachine = new CoffeeMachine();
 
-        boat.drive();
+     Coffee coffee = new Coffee(coffeeMachine);
+
+     coffee.CoffeeReady();
+
     }
 }

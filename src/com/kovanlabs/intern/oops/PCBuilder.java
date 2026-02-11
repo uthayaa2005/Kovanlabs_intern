@@ -37,12 +37,12 @@ class Compter{
         System.out.println("the computer has been started");
     }
 
-    void ramUpgrade(Ram ram){
-         int r = 64;
-        this.ram = ram;
-
-        System.out.println(r+" ram in gb");
-    }
+//    void ramUpgrade(Ram ram){
+//         int r = 64;
+//        this.ram = ram;
+//
+//        System.out.println(r+" ram in gb");
+//    }
 
 }
 public class PCBuilder {
@@ -50,6 +50,6 @@ public class PCBuilder {
         Compter c;
         c = new Compter(new Ram(),new Processor(),new Storage());
         c.start();
-        c.ramUpgrade(new Ram());
+      //  c.ramUpgrade(new Ram());
     }
 }

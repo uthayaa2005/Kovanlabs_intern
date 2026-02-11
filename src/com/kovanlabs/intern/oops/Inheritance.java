@@ -2,13 +2,19 @@ package com.kovanlabs.intern.oops;
 
 
 class Vehicle{
+    final String x ="uthayaa";
     void move(){
+        System.out.println(x);
         System.out.println("Vehicles moving");
     }
 }
 class Car extends Vehicle{
+
+    String x = "sanjai";
     @Override
     void move(){
+
+        System.out.println(x);
 
         System.out.println("Cars moving");
     }
@@ -21,6 +27,7 @@ class Bike extends Vehicle{
         System.out.println("Bikes moving");
     }
     void race(){
+
         System.out.println("top speed is 200km per hour");
     }
 }
@@ -30,8 +37,7 @@ public class Inheritance {
         Bike bike1 = new Bike();
 
         car1.move();
-        bike1.race();
-        bike1.move();
+
 
 
     }
