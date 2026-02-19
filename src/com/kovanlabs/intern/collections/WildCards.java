@@ -20,8 +20,8 @@ public class WildCards {
             List<Integer> intList = List.of(10, 20, 30);
             List<Double> doubleList = List.of(10.5, 20.5, 30.5);
 
-            System.out.println(sumList(intList));    // 60.0
-            System.out.println(sumList(doubleList)); // 61.5
+            System.out.println(sumList(intList));    
+            System.out.println(sumList(doubleList)); 
         }
     }
 
