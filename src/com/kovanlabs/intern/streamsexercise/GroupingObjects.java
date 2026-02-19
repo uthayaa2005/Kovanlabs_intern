@@ -45,6 +45,9 @@ public class GroupingObjects {
                 .collect(Collectors.groupingBy(Employee::getDept));
 
         System.out.println(map);
+
+
+
     }
 
 

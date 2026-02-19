@@ -1,5 +1,10 @@
 package com.kovanlabs.intern.streamsexercise;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+
 /*        🟢 Level 1 – Very Basic
 
 Given a list of integers, print all elements using Streams.
@@ -69,5 +74,28 @@ Given a list of integers, group numbers into even and odd.
 Given a list of words, count how many words have more than 3 characters.
 
 Given a list of integers, find the second highest number using Streams.*/
+
+
 public class StreamPrograms {
+
+
+
+    public static void main(String[] args) {
+
+        List<Integer> numbers = List.of(1,2,3,4,5,6,7,8,9,10);
+        List<String> names = List.of("uthayaaa", "Apple","Ant","Arrow","anime");
+        Solutions sum = new Solutions();
+        sum.sumOfNumbers(numbers);
+        sum.evenNumbers(numbers);
+        sum.oddnumbers(numbers);
+        sum.howManyElements(numbers);
+        sum.letterStarting(names);
+        sum.groupElements(names);
+
+
+
+
+
+
+    }
 }
