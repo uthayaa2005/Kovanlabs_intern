@@ -1,8 +1,17 @@
 package com.kovanlabs.intern.rpgbattlesystem;
 
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Scanner;
 
-abstract class Character {
+abstract class Character implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     String name;
     int  health;
@@ -26,9 +35,14 @@ abstract class Character {
             health = 0;
         }
     }
+
+    public String getStatus() {
+        return null;
+    }
 }
 
 class Warrior extends Character {
+    private static final long serialVersionUID = 1L;
 
     Warrior(String name){
         super(name,120,15);
@@ -44,6 +58,7 @@ class Warrior extends Character {
 }
 
 class Mage extends   Character {
+    private static final long serialVersionUID = 1L;
 
     Mage (String name){
         super(name,100,25);
@@ -61,6 +76,7 @@ class Mage extends   Character {
 }
 
 class Rouge  extends Character {
+    private static final long serialVersionUID = 1L;
     Rouge(String name){
         super(name,100,18);
     }
@@ -75,40 +91,120 @@ class Rouge  extends Character {
 
 class Arena {
 
-    static void fight (Character p1, Character p2){
+    static void fight(Character p1, Character p2) {
+
         System.out.println("Fight starts");
 
-        while(p1.isAlive() && p2.isAlive()){
+        while (p1.isAlive() && p2.isAlive()) {
 
             p1.attack(p2);
+            System.out.println(p2.name + " health : " + p2.health);
 
-            System.out.println(p2.name +" health : "+p2.health);
-
-            if(!p2.isAlive()) break;
+            if (!p2.isAlive()) break;
 
             p2.attack(p1);
-            System.out.println(p1.name +" health : "+p2.health);
-            
-            }
+            System.out.println(p1.name + " health : " + p1.health);
+        }
 
         System.out.println("Fight ends");
 
-        if(p1.isAlive()){
-            System.out.println("winner "+p1.name);
-        }else{
-            System.out.println("winner "+p2.name);
+        if (p1.isAlive()) {
+            System.out.println("Winner: " + p1.name);
+        } else {
+            System.out.println("Winner: " + p2.name);
         }
+    }
+}
+
+
+class GameStorage {
+
+    private static final Path path = Paths.get("player.dat");
+
+    public static void save(Character character) {
+        try (ObjectOutputStream oos =
+                     new ObjectOutputStream(Files.newOutputStream(path))) {
+
+            oos.writeObject(character);
+            System.out.println("Game Saved");
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
+    public static Character load() {
+        if (Files.notExists(path)) {
+            System.out.println("Save file not found");
+            return null;
+        }
 
-public class RpgBattleSystem{
+        try (ObjectInputStream ois =
+                     new ObjectInputStream(Files.newInputStream(path))) {
+
+            System.out.println("Game Loaded");
+            return (Character) ois.readObject();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+
+
+
+public class RpgBattleSystem {
+
     public static void main(String[] args) {
 
-        Character p1 = new Warrior("Thor");
-        Character p2 = new Mage("Ironman");
+        Scanner scanner = new Scanner(System.in);
 
-        Arena.fight(p1,p2);
+        while (true) {
+            System.out.println("\n=== RPG Battle with Save & Load ===");
+            System.out.println("1. New Game");
+            System.out.println("2. Load Game");
+            System.out.println("3. Exit");
+            System.out.print("Choose option: ");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+
+                case 1:
+                    scanner.nextLine();
+                    System.out.print("Enter player name: ");
+                    String name = scanner.nextLine();
+
+                    Character player = new Warrior(name);
+                    Character enemy = new Mage("Enemy Mage");
+
+                    Arena.fight(player, enemy);
+                    GameStorage.save(player);
+                    break;
+
+                case 2:
+                    Character loadedPlayer = GameStorage.load();
+                    if (loadedPlayer != null) {
+                        System.out.println("Player Status: " + loadedPlayer.getStatus());
+
+                        Character newEnemy = new Mage("Enemy Mage");
+                        Arena.fight(loadedPlayer, newEnemy);
+                        GameStorage.save(loadedPlayer);
+                    }
+                    break;
+
+                case 3:
+                    System.out.println("Exiting Game...");
+                    scanner.close();
+                    return;
+
+                default:
+                    System.out.println("Invalid option. Try again.");
+            }
+        }
     }
-
 }
+
+
+
+
