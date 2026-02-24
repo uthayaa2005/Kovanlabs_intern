@@ -26,6 +26,8 @@ public class TryWithResources {
         }catch(Exception e){
             System.out.println(e);
         }
+
+        System.out.println("hiii");
     }
 
 
