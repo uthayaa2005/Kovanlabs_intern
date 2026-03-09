@@ -24,5 +24,7 @@ public class HashMapWorking {
         System.out.println(index1);
         System.out.println(index2);
 
+
+
     }
 }

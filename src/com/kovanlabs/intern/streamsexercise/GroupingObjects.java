@@ -34,7 +34,7 @@ public class GroupingObjects {
         List<Employee> employees = List.of(
                 new Employee("jhon","IT"),
                 new Employee("ram","IT"),
-                new Employee("uthyaaa","CSE"),
+                new Employee("uthayaa","CSE"),
                 new Employee("shyam","CSE"),
                 new Employee("sanjai","CSE"),
                 new Employee("thiksha" ,"EEE")

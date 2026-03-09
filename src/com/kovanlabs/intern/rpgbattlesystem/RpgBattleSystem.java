@@ -160,7 +160,7 @@ public class RpgBattleSystem {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("\nRPG Battle with Save & Load");
+            System.out.println("\n RPG Battle with Save & Load");
             System.out.println("1. New Game");
             System.out.println("2. Load Game");
             System.out.println("3. Exit");
@@ -194,7 +194,7 @@ public class RpgBattleSystem {
                     break;
 
                 case 3:
-                    System.out.println("Exiting Game...");
+                    System.out.println("Exiting Game");
                     scanner.close();
                     return;
 
